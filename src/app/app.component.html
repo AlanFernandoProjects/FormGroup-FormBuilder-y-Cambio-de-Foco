@@ -1,4 +1,98 @@
-<hello name="{{ name }}"></hello>
-<p>
-  Start editing to see some magic happen :)
-</p>
+<!doctype html>
+<html lang="en">
+<body>
+  <head>
+      <meta charset="utf-8">
+      <title>App</title>
+      <base href="/">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="icon" type="image/x-icon" href="favicon.ico">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  </head>
+  <div class="card">
+      <div class="card-header">
+          Ejemplo FormGroup, Cambio de Foco, Conversion de Variables y Scroll Horizontal en Tabla
+      </div>
+      <div class="car-body">
+          <form [formGroup]="formulario" class="mx-5 my-4">
+              <label for="">Nombre:</label>
+              <input id="nombre" class="form-control" type="text" formControlName="nombre" (keydown.enter)="this.cambiarFoco(
+                                                          'apePaterno',
+                                                          formulario.get('apePaterno') ,
+                                                          [formulario.get('nombre')]
+                                                      )"> <br>
+
+              <label for="">Apellido Paterno:</label>
+              <input id="apePaterno" class="form-control" type="text" formControlName="apePaterno" (keydown.enter)="this.cambiarFoco(
+                                                          'apeMaterno',
+                                                          formulario.get('apeMaterno') ,
+                                                          [formulario.get('apePaterno')]
+                                                      )"> <br>
+
+              <label for="">Apellido Materno:</label>
+              <input id="apeMaterno" class="form-control" type="text" formControlName="apeMaterno" (keydown.enter)="this.cambiarFoco(
+                                                          'combo',
+                                                          formulario.get('combo') ,
+                                                          [formulario.get('apeMaterno')]
+                                                      )"> <br>
+
+              <select id="combo" class="form-control" formControlName="combo">
+                  <option value="0">Choose default combo...</option>
+                  <option value="1">Alan</option>
+                  <option value="2">Fernando</option>
+                  <option value="3">Castle</option>
+              </select>
+
+              <input type="checkbox" class="form-control" formControlName="checkPrueba">
+
+              <button type="button" (click)="agregar(formulario.value)">Guardar</button>
+              <button type="button" (click)="resetForm()">Limpiar</button>
+          </form>
+
+          <!-- estilo para hacer un scroll horizontal en una tabla -->
+          <div style="overflow-x:auto;">
+              <p-table [value]="rows" [rows]="30" [scrollable]="true" [totalRecords]="30" scrollHeight="150px">
+                  <ng-template pTemplate="colgroup">
+                      <colgroup>
+                          <col [style.width]="'100px'">
+                          <col [style.width]="'100px'">
+                          <col [style.width]="'100px'">
+                          <col [style.width]="'100px'">
+                          <col [style.width]="'100px'">
+                          <col [style.width]="'100px'">
+                          <col [style.width]="'100px'">
+                      </colgroup>
+                  </ng-template>
+                  <ng-template pTemplate="header">
+                      <tr>
+                          <th>ABC</th>
+                          <th>DEF</th>
+                          <th>GHI</th>
+                          <th>JKL</th>
+                          <th>MNO</th>
+                          <th>PQR</th>
+                          <th>STU</th>
+                      </tr>
+                  </ng-template>
+                  <ng-template pTemplate="body" let-row>
+                      <tr>
+                          <td><b>_{{row.value}}_</b></td>
+                          <td>thereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee</td>
+                          <td>is</td>
+                          <td>a</td>
+                          <td>lot</td>
+                          <td>of</td>
+                          <td>columns</td>
+                      </tr>
+                  </ng-template>
+              </p-table>
+          </div>
+      </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+
+</html>
